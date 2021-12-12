@@ -36,7 +36,7 @@ public class WebStepDefinitions {
 
     @Given("I go to the home page")
     public void iGoToTheHomePage() {
-        driver.get("https://www.oubiti.com");
+        driver.get("https://www.eneba.com/es/");
     }
 
     @Then("I should see a {string} button/text")
@@ -53,6 +53,15 @@ public class WebStepDefinitions {
 
     @And("I take a screenshot with filename {string}")
     public void iTakeAScreenshotWithFilename(String filename) {
+        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot, "image/png", "filename");
+    }
+    @And("I fill the field {string} with the information {string}")
+    public void fillField(String field, String value){
+        By byXPath = By.xpath("//*[contains(text(),'" + field + "')]");
+       // WebElement ele = driver.findElement(By.id("username").sendKeys("abc@gmail.com");
+        WebElement ele = driver.findElement(By.id("username"));
+        ele.sendKeys(value);
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         scenario.attach(screenshot, "image/png", "filename");
     }
