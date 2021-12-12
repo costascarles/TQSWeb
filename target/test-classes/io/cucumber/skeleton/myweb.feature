@@ -16,3 +16,5 @@ Feature: Tests a page using Selenium WebDriver
     And I fill the field "password" with the information "123456789tqs"
     And I fill the field "passwordRepeat" with the information "123456789tqs"
     And I take a screenshot with filename "Crear una cuenta INFO"
+    When Submit form "Crear una cuenta"
+    Then I should see a "Verifica tu correo electrónico" text

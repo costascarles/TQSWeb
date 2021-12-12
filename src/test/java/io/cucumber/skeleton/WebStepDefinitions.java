@@ -51,6 +51,13 @@ public class WebStepDefinitions {
         driver.findElement(By.linkText(button_text)).click();
     }
 
+    @When("Submit form {string}")
+    public void submitForm(String button_text) {
+        By byXPath = By.xpath("//*[contains(text(),'" + button_text + "')]");
+        driver.findElement(byXPath).click();
+    }
+
+
     @And("I take a screenshot with filename {string}")
     public void iTakeAScreenshotWithFilename(String filename) {
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
