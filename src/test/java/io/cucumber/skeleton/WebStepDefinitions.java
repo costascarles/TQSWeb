@@ -60,10 +60,9 @@ public class WebStepDefinitions {
     public void fillField(String field, String value){
         By byXPath = By.xpath("//*[contains(text(),'" + field + "')]");
        // WebElement ele = driver.findElement(By.id("username").sendKeys("abc@gmail.com");
-        WebElement ele = driver.findElement(By.id("username"));
+        WebElement ele = driver.findElement(By.id(field));
         ele.sendKeys(value);
-        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-        scenario.attach(screenshot, "image/png", "filename");
+
     }
 
     @AfterAll()

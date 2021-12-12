@@ -12,4 +12,7 @@ Feature: Tests a page using Selenium WebDriver
     When I click on "Registro" button
     Then I should see a "Crear una cuenta" text
     And I take a screenshot with filename "Crear una cuenta"
-    And I fill the field "Email" with the information "carles_cosmat@hotmail.es"
+    And I fill the field "username" with the information "carles_cosmat@hotmail.es"
+    And I fill the field "password" with the information "123456789tqs"
+    And I fill the field "passwordRepeat" with the information "123456789tqs"
+    And I take a screenshot with filename "Crear una cuenta INFO"
