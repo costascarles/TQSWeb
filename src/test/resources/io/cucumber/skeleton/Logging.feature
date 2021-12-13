@@ -9,7 +9,7 @@ Feature: Test to evaluate the Logging section
     And I fill the field "password" with the information "contrase1936"
     When Submit form "_2wsqrp.qGNWom"
     And Wait 15000
-    And I take a screenshot with filename "Crear una cuenta INFO"
+    And I take a screenshot with filename "Logging OK cuenta"
     Then I should see a "carles_cosmat@hotmail.es" text
 
   Scenario: Access to Logging KO
@@ -21,6 +21,6 @@ Feature: Test to evaluate the Logging section
     And I fill the field "password" with the information "contrase1933"
     When Submit form "_2wsqrp.qGNWom"
     And Wait 15000
-    And I take a screenshot with filename "Crear una cuenta INFO"
+    And I take a screenshot with filename "Logging KO cuenta"
     Then I should see a "Credenciales proporcionadas inválidas" text
 

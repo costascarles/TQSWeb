@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.Keys;
 
 public class WebStepDefinitions {
 
@@ -73,12 +74,24 @@ public class WebStepDefinitions {
         ele.sendKeys(value);
 
     }
+    @And("I fill the field with name {string} with the information {string}")
+    public void fillFieldType(String field, String value){
+        By byXPath = By.xpath("//*[contains(text(),'" + field + "')]");
+        // WebElement ele = driver.findElement(By.id("username").sendKeys("abc@gmail.com");
+        WebElement ele = driver.findElement(By.cssSelector(field));
+        ele.sendKeys(value);
+    }
+    @When("Press Enter of field {string}")
+    public void pressEnter(String field){
+        WebElement ele = driver.findElement(By.cssSelector(field));
+        ele.sendKeys(Keys.ENTER);
+    }
 
     @And("Wait {int}")
     public void wait(int time){
         try {
             Thread.sleep(time);
-        }catch(InterruptedException ie){}
+        }catch(InterruptedException ie){ System.out.println("Sleep need to be positive");}
     }
 
     @AfterAll()
