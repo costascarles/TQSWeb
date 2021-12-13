@@ -32,6 +32,7 @@ public class WebStepDefinitions {
     @Before
     public void before(Scenario scenario) {
         this.scenario = scenario;
+        driver.manage().window().maximize();
     }
 
     @Given("I go to the home page")
@@ -51,10 +52,11 @@ public class WebStepDefinitions {
         driver.findElement(By.linkText(button_text)).click();
     }
 
+
     @When("Submit form {string}")
     public void submitForm(String button_text) {
-        By byXPath = By.xpath("//*[contains(text(),'" + button_text + "')]");
-        driver.findElement(byXPath).click();
+
+        driver.findElement(By.cssSelector("button."+button_text)).click();
     }
 
 
@@ -70,6 +72,13 @@ public class WebStepDefinitions {
         WebElement ele = driver.findElement(By.id(field));
         ele.sendKeys(value);
 
+    }
+
+    @And("Wait {int}")
+    public void wait(int time){
+        try {
+            Thread.sleep(time);
+        }catch(InterruptedException ie){}
     }
 
     @AfterAll()

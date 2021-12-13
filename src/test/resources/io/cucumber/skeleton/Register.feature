@@ -1,7 +1,5 @@
-Feature: Tests a page using Selenium WebDriver
-  In order to evaluate Selenium Framework
-  As a developer
-  I want to interact with my web
+Feature: Test to evaluate Register section
+
 
   Scenario: My website can be browsed
     When I go to the home page
@@ -16,5 +14,5 @@ Feature: Tests a page using Selenium WebDriver
     And I fill the field "password" with the information "123456789tqs"
     And I fill the field "passwordRepeat" with the information "123456789tqs"
     And I take a screenshot with filename "Crear una cuenta INFO"
-    When Submit form "Crear una cuenta"
+    When Submit form "_2wsqrp.qGNWom"
     Then I should see a "Verifica tu correo electrónico" text
