@@ -10,6 +10,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.Keys;
 
+import java.util.List;
+
 public class WebStepDefinitions {
 
     /**
@@ -59,7 +61,11 @@ public class WebStepDefinitions {
 
         driver.findElement(By.cssSelector("button."+button_text)).click();
     }
+    @When("I Click in link {string}")
+    public void submitLink(String button_text) {
 
+        driver.findElement(By.cssSelector("a."+button_text)).click();
+    }
 
     @And("I take a screenshot with filename {string}")
     public void iTakeAScreenshotWithFilename(String filename) {
@@ -92,6 +98,14 @@ public class WebStepDefinitions {
         try {
             Thread.sleep(time);
         }catch(InterruptedException ie){ System.out.println("Sleep need to be positive");}
+    }
+
+    @When("Select from list the item {int}")
+    public void selectFromGrid(int item){
+      WebElement grid = driver.findElement(By.cssSelector("div.JZCH_t"));
+      By locAllRows = By.xpath(".//*[contains(@class,'oSVLlh')]//*[contains(@class,'oSVLlh')]");
+      List<WebElement> allRows = grid.findElements(By.cssSelector("a.oSVLlh"));
+      allRows.get(item).click();
     }
 
     @AfterAll()
