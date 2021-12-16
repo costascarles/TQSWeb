@@ -7,9 +7,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.Keys;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -56,6 +60,11 @@ public class WebStepDefinitions {
         By byXPath = By.xpath("//title[contains(text(),'" + text + "')]");
         boolean present = driver.findElements(byXPath).size() > 0;
         Assertions.assertTrue(present);
+        //List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+        //int num = browserTabs.size();
+        //driver.switchTo().window(browserTabs.get(1));
+        //String title = driver.getTitle();
+        //driver.switchTo.window(browserTabs.get(0));
     }
 
     @When("I click on {string} button")
@@ -69,21 +78,36 @@ public class WebStepDefinitions {
 
         driver.findElement(By.cssSelector("button."+button_text)).click();
     }
+
+    @When("Submit form block {string}")
+    public void submitBlockForm(String button_text) {
+
+        driver.findElement(By.cssSelector("div.ynBTjm button."+button_text)).click();
+    }
+
     @When("I Click in link {string}")
     public void submitLink(String button_text) {
 
         driver.findElement(By.cssSelector("a."+button_text)).click();
     }
+
+    @And("I Click in radio option {string}")
+    public void clickRadio(String radio_text) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id(radio_text))).click();
+        driver.findElement(By.cssSelector("[name=company][value=TRADER]")).click();
+    }
+
     @When("I click in subtitle link {string}")
     public void submitSubtitleLink(String text)
     {
-        WebElement parent = driver.findElement(By.xpath("//h4[contains(text(),'" + text + "')]"));
+        WebElement parent = driver.findElement(By.xpath("//*[contains(text(),'" + text + "')]"));
         parent.findElement(By.xpath("./..")).click();
     }
     @When("I click in svg link {string}")
     public void submitImageLink(String image_text) {
 
-        driver.findElement(By.cssSelector("a[title='"+image_text+"'] svg path")).click();
+        driver.findElement(By.cssSelector("a[title='"+image_text+"']")).click();
     }
 
     @And("I take a screenshot with filename {string}")
@@ -140,6 +164,13 @@ public class WebStepDefinitions {
       List<WebElement> allRows = grid.findElements(By.cssSelector("a.oSVLlh"));
       allRows.get(item).click();
     }
+
+    @When("Select from block list the item {string}")
+    public void selectFromBlock(String text){
+        WebElement ele = driver.findElement(By.xpath("//section[@class='section-content']//ul[@class='article-list']/li[1]//a[contains(text(),'" + text + "')]"));
+
+    }
+
 
     @AfterAll()
     public static void tearDown() {

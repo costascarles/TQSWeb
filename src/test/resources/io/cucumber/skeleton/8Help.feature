@@ -1,11 +1,62 @@
-Feature: Test to evaluate FAQ menus
-
-  Scenario: Navigate to Facebook
+Feature: Petition become vendor
+  Scenario: Petition Sell digital products OK
     Given I go to the home page
-    When I click on "FAQ" button
+    When I click on "Productos digitales" button
     And Wait 5000
-    When I click on "¿Qué es ENEBA?" button
-    Then I should see a "ENEBA es una tienda online dedicada a la venta de juegos digitales.Aquí vas a poder encontrar una amplia variedad de juegos de acción, aventuras, puzzles y mucho más procedentes dedesarrolladores pequeños hasta los más grandes. Cada entusiasta del gaming podrá encontrar el juego que quiere ¡y a un buen precio!" text
-    And I fill the field with name "query" with the information "registro"
-    When Press Enter of field named "query"
-    Then I should see a "4 resultados para \"registro\"" text
+    When Submit form block "pr0yIU"
+    #And I Click in radio option "companyTrader"
+    #And I Click in radio option "officialStock"
+    Then I should see a "Conviértete en un vendedor" text
+    And I fill the field "stockSource" with the information "Una descripción"
+    And I fill the field "titlesSell" with the information "Una descripción"
+    And I fill the field "reputation" with the information "Una descripción"
+    And I fill the field "whyDoYouSell" with the information "Una descripción"
+    And I fill the field "nameAndSurname" with the information "Eduardo Robles"
+    And I fill the field "products" with the information "Una descripción de producto"
+    And I fill the field "email" with the information "ejemplo@gmail.com"
+    And Wait 5000
+    When Submit form "rFk93C.pr0yIU"
+    And Wait 5000
+    Then I should see a "Su mensaje ha sido enviado con éxito. ¡Nos pondremos en contacto con usted muy pronto!" text
+
+  Scenario: Petition Sell digital products KO error name
+    Given I go to the home page
+    When I click on "Productos digitales" button
+    And Wait 5000
+    When Submit form block "pr0yIU"
+    Then I should see a "Conviértete en un vendedor" text
+    And I fill the field "stockSource" with the information "Una descripción"
+    And I fill the field "titlesSell" with the information "Una descripción"
+    And I fill the field "reputation" with the information "Una descripción"
+    And I fill the field "whyDoYouSell" with the information "Una descripción"
+    And I fill the field "nameAndSurname" with the information "Eduardo"
+    And I fill the field "products" with the information "Una descripción de producto"
+    And I fill the field "email" with the information "ejemplo@gmail.com"
+    And Wait 5000
+    When Submit form "rFk93C.pr0yIU"
+    And Wait 5000
+    Then I should see a "El nombre debe contener nombre y apellidos" text
+
+  Scenario: Petition Sell digital products KO error gmail
+    Given I go to the home page
+    When I click on "Productos digitales" button
+    And Wait 5000
+    When Submit form block "pr0yIU"
+    Then I should see a "Conviértete en un vendedor" text
+    And I fill the field "stockSource" with the information "Una descripción"
+    And I fill the field "titlesSell" with the information "Una descripción"
+    And I fill the field "reputation" with the information "Una descripción"
+    And I fill the field "whyDoYouSell" with the information "Una descripción"
+    And I fill the field "nameAndSurname" with the information "Eduardo Robles"
+    And I fill the field "products" with the information "Una descripción de producto"
+    And I fill the field "email" with the information "ejemplo@f"
+    And Wait 5000
+    When Submit form "rFk93C.pr0yIU"
+    And Wait 5000
+    Then I should see a "Introduce un correo electrónico con un dominio válido" text
+
+
+
+
+
+
